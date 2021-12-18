@@ -4,18 +4,17 @@
 
 A 65% hotswap in switch RGB keyboard from KPRepublic.
 
-* Hardware Supported: BM65HSRGB
+* Keyboard Maintainer: [bdtc123](https://github.com/bdtc123)
+* Hardware Supported: BM65HSRGB/rev2
 * Hardware Availability: [KP Republic](https://kprepublic.com/products/bm65rgb-bm65-rgb-65-hot-swappable-custom-mechanical-keyboard-pcb-programmed-qmk-via-firmware-full-rgb-switch-underglow-type-c?_pos=1&_sid=5b9a6a5d0&_ss=r)
 
 Make example for this keyboard (after setting up your build environment):
 
-    for rev1: make kprepublic/bm65rgb/rev1:default
-    for rev2: make kprepublic/bm65rgb/rev2:default
+    make kprepublic/bm65rgb/rev2:default
 
 Flashing example for this keyboard:
 
-    for rev1: make kprepublic/bm65rgb/rev1:default:flash
-    for rev2: make kprepublic/bm65rgb/rev2:default:flash
+    make kprepublic/bm65rgb/rev2:default:flash
 
 To reset the board into bootloader mode, do one of the following:
 
