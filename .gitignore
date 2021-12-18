@@ -20,11 +20,12 @@
 api_data/v1
 doxygen/
 quantum/version.h
-*.bin
+#*.bin
 *.eep
-*.hex
+#*.hex
 *.qmk
 *.uf2
+.lnk
 
 # Old-style QMK Makefiles
 /keyboards/*/Makefile
