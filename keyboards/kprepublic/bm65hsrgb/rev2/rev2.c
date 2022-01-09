@@ -25,7 +25,7 @@
 
 // clang-format off
 
-const is31_led __flash g_is31_leds[DRIVER_LED_TOTAL] = {
+const is31_led PROGMEM g_is31_leds[DRIVER_LED_TOTAL] = {
     {0, CS6_SW1, CS5_SW1, CS4_SW1},
     {0, CS6_SW2, CS5_SW2, CS4_SW2},
     {0, CS6_SW3, CS5_SW3, CS4_SW3},
