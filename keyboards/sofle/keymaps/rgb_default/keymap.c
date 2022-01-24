@@ -16,6 +16,7 @@
   */
   // SOFLE RGB
 #include <stdio.h>
+#include "features/caps_word.h"
 
 #include QMK_KEYBOARD_H
 
@@ -109,9 +110,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|------+-------+--------+--------+--------+------|                   |--------+-------+--------+--------+--------+---------|
           KC_GRV,  KC_A,   KC_S,    KC_D,    KC_F,    KC_G,                      KC_H,    KC_J,   KC_K,    KC_L,    KC_SCLN, KC_QUOT, // allows Russian letter Э
   //|------+-------+--------+--------+--------+------|  ===  |   |  ===  |--------+-------+--------+--------+--------+---------|
-     OSM(MOD_LSFT), KC_Z,   KC_X,    KC_C,    KC_V,    KC_B,  KC_MUTE,  KC_D_MUTE,KC_N, LT(0, KC_M),   KC_COMM, KC_DOT,  KC_SLSH, OSM(MOD_RSFT),
+     KC_LSFT, KC_Z,   KC_X,    KC_C,    KC_V,    KC_B,  KC_MUTE,  KC_D_MUTE,KC_N, LT(0, KC_M),   KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
   //|------+-------+--------+--------+--------+------|  ===  |   |  ===  |--------+-------+--------+--------+--------+---------|
-                        KC_LALT, KC_LGUI, KC_LCTL, OSM(MOD_LSFT),  KC_LOWER   ,     OSL(_RAISE),   KC_SPC,  KC_RALT, KC_DEL, KC_ENT
+                        KC_LALT, KC_LGUI, KC_LCTL, KC_LSFT,  KC_LOWER   ,     OSL(_RAISE),   KC_SPC,  KC_RALT, KC_DEL, KC_ENT
   //            \--------+--------+--------+---------+-------|   |--------+---------+--------+---------+-------/
 ),
 
@@ -197,7 +198,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|------+-------+--------+--------+--------+------|  ===  |   |  ===  |--------+-------+--------+--------+--------+---------|
   _______,  KC_NO,  KC_NO,   KC_NO,   KC_NO, KC_NO,   _______,    _______,     KC_NO,  KC_NO,  KC_NO,   KC_NO,   KC_ENT,    _______,
   //|------+-------+--------+--------+--------+------|  ===  |   |  ===  |--------+-------+--------+--------+--------+---------|
-                 _______, _______, _______, _______, _______,     _______, _______, _______, _______, _______
+                 _______, _______, _______, _______, _______,     TG(_SWITCH), _______, _______, _______, _______
   //            \--------+--------+--------+---------+-------|   |--------+---------+--------+---------+-------/
 ),
 /* RAISE
@@ -224,7 +225,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|------+-------+--------+--------+--------+------|  ===  |   |  ===  |--------+-------+--------+--------+--------+---------|
   _______,KC_NO, KC_LBRC, KC_RBRC, KC_EQL, KC_UNDS,_______,    _______,KC_UNDS, KC_PLUS,KC_LBRC, KC_RBRC, KC_BSLS, KC_TILD,
   //|------+-------+--------+--------+--------+------|  ===  |   |  ===  |--------+-------+--------+--------+--------+---------|
-                 _______, _______, _______, _______, TG(_SWITCH),     _______, _______, _______, _______, _______
+                 _______, _______, _______, _______, _______,     _______, _______, _______, _______, _______
   //            \--------+--------+--------+---------+-------|   |--------+---------+--------+---------+-------/
 ),
 /* ADJUST
@@ -307,7 +308,7 @@ LT(_NUMPAD,KC_ESC),KC_1,  KC_2,    KC_3,    KC_4,    KC_5,             KC_6, KC_
   //|------+-------+--------+--------+--------+------|  ===  |   |  ===  |--------+-------+--------+--------+--------+---------|
   KC_NO,  KC_Z,  KC_M,    KC_C,  KC_V,   KC_H,    TG(_SWITCH) ,    KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
   //|------+-------+--------+--------+--------+------|  ===  |   |  ===  |--------+-------+--------+--------+--------+---------|
-         KC_LALT, KC_LGUI, KC_LCTL, OSM(MOD_LSFT),  KC_LOWER   ,     TG(_SWITCH),   KC_SPC,  KC_RALT, KC_DEL, KC_ENT
+         KC_LALT, KC_LGUI, KC_LCTL, KC_LSFT,  KC_LOWER,     TG(_SWITCH),   KC_SPC,  KC_RALT, KC_DEL, KC_ENT
   //            \--------+--------+--------+---------+-------|   |--------+---------+--------+---------+-------/
 
 	),
@@ -478,6 +479,7 @@ bool oled_task_user(void) {
 #endif
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    if (!process_caps_word(keycode, record)) { return false; }
     switch (keycode) {
         case KC_QWERTY:
             if (record->event.pressed) {

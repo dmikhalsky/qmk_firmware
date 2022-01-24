@@ -7,3 +7,4 @@ LTO_ENABLE = yes
 OLED_ENABLE = no
 OLED_DRIVER = SSD1306
 MIDI_ENABLE = yes
+SRC += features/caps_word.c
