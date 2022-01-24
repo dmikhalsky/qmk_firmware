@@ -35,9 +35,15 @@
 #define TAPPING_FORCE_HOLD
 #ifdef TAPPING_TERM
     #undef TAPPING_TERM
-    #define TAPPING_TERM 200
+    #define TAPPING_TERM 300
 #endif
+
+#define ONESHOT_TIMEOUT 1000
+
 #define ENCODER_DIRECTION_FLIP
+
+#define MIDI_ADVANCED
+
 
 
 #define RGBLIGHT_SLEEP
