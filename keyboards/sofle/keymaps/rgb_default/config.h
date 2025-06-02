@@ -23,14 +23,15 @@
 ///https://thomasbaart.nl/2018/12/01/reducing-firmware-size-in-qmk/
 
 
-#define MASTER_LEFT
-//#define MASTER_RIGHT
+//#define MASTER_LEFT
+#define MASTER_RIGHT
 // #define EE_HANDS
 
 #define CUSTOM_FONT
 
 #define CUSTOM_LAYER_READ //if you remove this it causes issues - needs better guarding
 
+#define TAPPING_TOGGLE 2
 
 #define TAPPING_FORCE_HOLD
 #ifdef TAPPING_TERM
@@ -38,11 +39,40 @@
     #define TAPPING_TERM 300
 #endif
 
-#define ONESHOT_TIMEOUT 1000
+#define ONESHOT_TIMEOUT 1500
 
 #define ENCODER_DIRECTION_FLIP
 
-#define MIDI_ADVANCED
+//#define MIDI_ADVANCED
+#ifdef PS2_MOUSE_ENABLE
+    #define PS2_CLOCK_PORT  PORTD
+    #define PS2_CLOCK_PIN   PIND
+    #define PS2_CLOCK_DDR   DDRD
+    #define PS2_CLOCK_BIT   0
+    #define PS2_DATA_PORT   PORTD
+    #define PS2_DATA_PIN    PIND
+    #define PS2_DATA_DDR    DDRD
+    #define PS2_DATA_BIT    1
+
+
+    /*
+    #define PS2_INT_INIT()  do { EICRA |= ((1<<ISC01) | (0<<ISC00));} while (0)
+    #define PS2_INT_ON()  do { EIMSK |= (1<<INT0);} while (0)
+    #define PS2_INT_OFF() do { EIMSK &= ~(1<<INT0);} while (0)
+    #define PS2_INT_VECT   INT0_vect
+    */
+
+
+    #define PS2_MOUSE_INVERT_Y
+    #define PS2_MOUSE_INVERT_X
+
+    #define PS2_MOUSE_USE_REMOTE_MODE
+
+    #define PS2_MOUSE_SCROLL_BTN_MASK (1 << PS2_MOUSE_BTN_MIDDLE)
+    #define PS2_MOUSE_SCROLL_BTN_SEND TAPPING_TERM
+    #define PS2_MOUSE_SCROLL_DIVISOR_V 6
+    #define PS2_MOUSE_SCROLL_DIVISOR_H PS2_MOUSE_SCROLL_DIVISOR_V
+#endif
 
 
 
